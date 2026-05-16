@@ -5,7 +5,30 @@ metadata:
 spec:
   tls:
     - hosts:
-      - dev.lyhua.dpdns.org
+        - dev.lyhua.dpdns.org
       secretName: visign-tls-dev
   rules:
-  - host: dev.lyhua.dpdns.org
+    - host: dev.lyhua.dpdns.org
+      http:
+        paths:
+          - path: /api/predict
+            pathType: Prefix
+            backend:
+              service:
+                name: visign-ai
+                port:
+                  number: 8000
+          - path: /api/videos
+            pathType: Prefix
+            backend:
+              service:
+                name: visign-web
+                port:
+                  number: 3000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: visign-web
+                port:
+                  number: 3000
