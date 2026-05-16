@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visign-web
+spec:
+  template:
+    spec:
+      containers:
+        - name: visign-web
+          image: visignnonprodacrzse7xf.azurecr.io/visign-web:dev-817602b7d53f9cfcd311964bcc9def9e83b4cbcf
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: visign-db-migration
+spec:
+  template:
+    spec:
+      containers:
+        - name: migration
+          image: visignnonprodacrzse7xf.azurecr.io/visign-web-migrator:dev-817602b7d53f9cfcd311964bcc9def9e83b4cbcf

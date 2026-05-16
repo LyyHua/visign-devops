@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: infra-nonprod-appset
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/LyyHua/visign-devops
+        revision: HEAD
+        directories:
+          - path: infra/*/envs/non-prod
+  template:
+    metadata:
+      name: "{{index .path.segments 1}}-{{index .path.segments 3}}"
+    spec:
+      # The project the application belong to
+      project: default
+
+      # Source of the infrastructure manifest
+      source:
+        repoURL: https://github.com/LyyHua/visign-devops
+        targetRevision: HEAD
+        path: "{{.path.path}}"
+
+      # Destination cluster and namespace to deploy the application
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{index .path.segments 1}}-{{index .path.segments 3}}"
+
+      # Sync policy
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
+          prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
+          selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).

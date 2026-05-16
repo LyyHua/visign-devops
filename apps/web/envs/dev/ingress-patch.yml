@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: visign-ingress
+spec:
+  tls:
+    - hosts:
+      - dev.lyhua.dpdns.org
+      secretName: visign-tls-dev
+  rules:
+  - host: dev.lyhua.dpdns.org
