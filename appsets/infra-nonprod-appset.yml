@@ -5,14 +5,14 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - git:
-        repoURL: https://github.com/LyyHua/visign-devops
-        revision: HEAD
-        directories:
-          - path: infra/*/envs/non-prod
+    - list:
+        elements:
+          - name: https-config-non-prod
+            path: infra/https-config/envs/non-prod
+            namespace: https-config-non-prod
   template:
     metadata:
-      name: "{{index .path.segments 1}}-{{index .path.segments 3}}"
+      name: "{{name}}"
     spec:
       # The project the application belong to
       project: default
@@ -21,12 +21,12 @@ spec:
       source:
         repoURL: https://github.com/LyyHua/visign-devops
         targetRevision: HEAD
-        path: "{{.path.path}}"
+        path: "{{path}}"
 
       # Destination cluster and namespace to deploy the application
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{index .path.segments 1}}-{{index .path.segments 3}}"
+        namespace: "{{namespace}}"
 
       # Sync policy
       syncPolicy:

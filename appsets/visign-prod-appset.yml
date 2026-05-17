@@ -4,17 +4,18 @@ metadata:
   name: visign-prod-appset
   namespace: argocd
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/LyyHua/visign-devops
-        revision: HEAD
-        directories:
-          - path: apps/*/envs/prod
+    - list:
+        elements:
+          - name: web-prod
+            path: apps/web/envs/prod
+            namespace: visign-prod
+          - name: ai-prod
+            path: apps/ai/envs/prod
+            namespace: visign-prod
   template:
     metadata:
-      name: "visign-{{index .path.segments 3}}"
+      name: "visign-{{name}}"
     spec:
       # The project the application belong to
       project: default
@@ -23,12 +24,12 @@ spec:
       source:
         repoURL: https://github.com/LyyHua/visign-devops
         targetRevision: HEAD
-        path: "{{.path.path}}"
+        path: "{{path}}"
 
       # Destination cluster and namespace to deploy the application
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{index .path.segments 1}}-{{index .path.segments 3}}"
+        namespace: "{{namespace}}"
 
       # Sync policy
       syncPolicy:
