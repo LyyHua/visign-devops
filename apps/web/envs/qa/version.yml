@@ -8,8 +8,7 @@ spec:
     spec:
       containers:
         - name: visign-web
-          image: visignnonprodacrzse7xf.azurecr.io/visign-web:dev-817602b7d53f9cfcd311964bcc9def9e83b4cbcf # we are suppose to use seperate container registries but this will do for now
-
+          image: visignnonprodacrzse7xf.azurecr.io/visign-web:qa-72f864057f503cd9ecd45931ce5c01cb4bab75b8 # we are suppose to use seperate container registries but this will do for now
 ---
 apiVersion: batch/v1
 kind: Job
@@ -20,4 +19,4 @@ spec:
     spec:
       containers:
         - name: migration
-          image: visignnonprodacrzse7xf.azurecr.io/visign-web-migrator:dev-817602b7d53f9cfcd311964bcc9def9e83b4cbcf
+          image: visignnonprodacrzse7xf.azurecr.io/visign-web-migrator:qa-72f864057f503cd9ecd45931ce5c01cb4bab75b8
