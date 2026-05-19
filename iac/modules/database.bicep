@@ -58,7 +58,7 @@ resource postgres 'Microsoft.DBforPostgreSQL/flexibleServers@2023-06-01-preview'
       standbyAvailabilityZone: enableHighAvailability ? '3' : ''
     }
 
-    availabilityZone: '' // Primary server in AZ-1; standby (if enabled) in AZ-3
+    availabilityZone: enableHighAvailability ? '1' : '' // Primary server in AZ-1; standby (if enabled) in AZ-3
 
     storage: {
       storageSizeGB: 32
