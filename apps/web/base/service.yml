@@ -4,9 +4,17 @@ metadata:
   name: visign-web
   labels:
     app: visign-web
+    app.kubernetes.io/name: visign-web
+    app.kubernetes.io/instance: visign-web
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: visign
 spec:
   selector:
     app: visign-web
+    app.kubernetes.io/name: visign-web
+    app.kubernetes.io/instance: visign-web
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: visign
   ports:
     - port: 3000
       targetPort: 3000

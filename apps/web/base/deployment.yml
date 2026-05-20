@@ -4,15 +4,27 @@ metadata:
   name: visign-web
   labels:
     app: visign-web
+    app.kubernetes.io/name: visign-web
+    app.kubernetes.io/instance: visign-web
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: visign
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: visign-web
+      app.kubernetes.io/name: visign-web
+      app.kubernetes.io/instance: visign-web
+      app.kubernetes.io/component: web
+      app.kubernetes.io/part-of: visign
   template:
     metadata:
       labels:
         app: visign-web
+        app.kubernetes.io/name: visign-web
+        app.kubernetes.io/instance: visign-web
+        app.kubernetes.io/component: web
+        app.kubernetes.io/part-of: visign
     spec:
       securityContext:
         runAsNonRoot: true

@@ -4,9 +4,17 @@ metadata:
   name: visign-ai
   labels:
     app: visign-ai
+    app.kubernetes.io/name: visign-ai
+    app.kubernetes.io/instance: visign-ai
+    app.kubernetes.io/component: ai
+    app.kubernetes.io/part-of: visign
 spec:
   selector:
     app: visign-ai
+    app.kubernetes.io/name: visign-ai
+    app.kubernetes.io/instance: visign-ai
+    app.kubernetes.io/component: ai
+    app.kubernetes.io/part-of: visign
   ports:
     - port: 8000
       targetPort: 8000

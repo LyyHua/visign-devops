@@ -5,15 +5,27 @@ metadata:
   name: visign-ai
   labels:
     app: visign-ai
+    app.kubernetes.io/name: visign-ai
+    app.kubernetes.io/instance: visign-ai
+    app.kubernetes.io/component: ai
+    app.kubernetes.io/part-of: visign
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: visign-ai
+      app.kubernetes.io/name: visign-ai
+      app.kubernetes.io/instance: visign-ai
+      app.kubernetes.io/component: ai
+      app.kubernetes.io/part-of: visign
   template:
     metadata:
       labels:
         app: visign-ai
+        app.kubernetes.io/name: visign-ai
+        app.kubernetes.io/instance: visign-ai
+        app.kubernetes.io/component: ai
+        app.kubernetes.io/part-of: visign
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8000"
