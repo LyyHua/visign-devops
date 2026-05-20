@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: visign-web
-          image: visignnonprodacrzse7xf.azurecr.io/visign-web:dev-1c9ea70c138983b1b2267eca5dedca8178fa349b
+          image: visignnonprodacrzse7xf.azurecr.io/visign-web:dev-72f864057f503cd9ecd45931ce5c01cb4bab75b8
 ---
 apiVersion: batch/v1
 kind: Job
@@ -19,4 +19,4 @@ spec:
     spec:
       containers:
         - name: migration
-          image: visignnonprodacrzse7xf.azurecr.io/visign-web-migrator:dev-1c9ea70c138983b1b2267eca5dedca8178fa349b
+          image: visignnonprodacrzse7xf.azurecr.io/visign-web-migrator:dev-72f864057f503cd9ecd45931ce5c01cb4bab75b8
